@@ -15,7 +15,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Load environment variables
-process.loadEnvFile();
+if (process.env.NODE_ENV !== 'production') {
+  process.loadEnvFile();
+}
+
 const PORT = process.env.PORT || 5000; // Default to 5000 if PORT is not defined
 
 // Middleware
@@ -47,6 +50,6 @@ app.use("/api/v1/tweet", tweetRoute);
 connectDB();
 
 // Start the server
-app.listen(PORT, () => {
+app.listen(PORT , () => {
   console.log(`Server Running on port: ${PORT}`);
 });
