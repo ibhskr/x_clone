@@ -5,13 +5,12 @@ import userRoute from "./src/routes/userRoute.js";
 import tweetRoute from "./src/routes/tweetRoute.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import 'dotenv/config'
-
-
+import "dotenv/config";
 
 const app = express();
 const corsOptions = {
-  origin: "http://localhost:5173", // Replace with your front-end URL
+  origin: "https://x-clone-7ppu.onrender.com",
+  // origin: "http://localhost:5173", // Replace with your front-end URL
   credentials: true, // This is needed for sending cookies
 };
 
@@ -51,15 +50,10 @@ app.use("/api/v1/tweet", tweetRoute);
 //   });
 // });
 
-
-
-
-
-
 // Connect to the database
 connectDB();
 
 // Start the server
-app.listen(PORT , () => {
+app.listen(PORT, () => {
   console.log(`Server Running on port: ${PORT}`);
 });
