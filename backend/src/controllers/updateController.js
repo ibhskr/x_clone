@@ -4,8 +4,8 @@ export const updateController = async (req, res) => {
   const { id } = req.params; // Get the user ID from params
   const data = req.body; // Destructure data from the request body
 
-  console.log("User ID:", id);
-  console.log("Data to update:", data);
+  // console.log("User ID:", id);
+  // console.log("Data to update:", data);
 
   if (!id) {
     return res.status(400).send({ message: "User ID is required" });

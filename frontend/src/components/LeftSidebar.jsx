@@ -25,6 +25,7 @@ function LeftSidebar({ className }) {
     try {
       const res = await axios.get(`USER_API_END_POINT/logout`);
       toast.success(res.data.message);
+      console.log(res);
       dispatch(getUsers(null));
       // user: null,
       dispatch(getOtherUser(null));

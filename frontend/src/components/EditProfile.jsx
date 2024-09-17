@@ -3,10 +3,12 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { USER_API_END_POINT } from "../utils/constant";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function EditProfile() {
   const profile = useSelector((store) => store.user.profile);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -42,11 +44,14 @@ function EditProfile() {
         }
       );
       console.log(response.data);
+      toast.success("Profile updated successfully");
+      navigate(-1);
     } catch (error) {
       console.error(
         "Error updating profile:",
         error.response?.data || error.message
       );
+      toast.error("ubable to update your profile");
     }
   };
 

@@ -1,6 +1,6 @@
 import { User } from "../models/userSchema.js";
 import { Tweet } from "../models/tweetSchema.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 process.loadEnvFile();
 
@@ -35,7 +35,11 @@ export const Register = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+    return res.status(500).json({
+      message: "Server error",
+      success: false,
+    });
   }
 };
 
@@ -88,7 +92,7 @@ export const Login = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({
       message: "Server error",
       success: false,
@@ -98,10 +102,15 @@ export const Login = async (req, res) => {
 
 //-- logout
 export const logout = (req, res) => {
-  return res.cookie("token", "", { expiresIn: new Date(Date.now()) }).json({
-    message: "user logout successfully",
-    success: true,
-  });
+  return res
+    .cookie("token", "", {
+      expires: new Date(Date.now()), // Corrected from 'expiresIn' to 'expires'
+      httpOnly: true, // Optional: Ensure the cookie is not accessible via client-side scripts
+    })
+    .json({
+      message: "User logged out successfully",
+      success: true,
+    });
 };
 
 //-- bookmark

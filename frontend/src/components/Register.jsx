@@ -70,10 +70,11 @@ function Register() {
       // console.log("only res:" + res);
       if (res.data.success) {
         toast.success(res.data.message);
+        navigate("/");
       }
       setEmail("");
       setPassword("");
-      navigate("/");
+
       dispatch(getUsers(res?.data?.user));
     } catch (error) {
       toast.success(error.response.data.message);
@@ -242,7 +243,10 @@ function Register() {
                     className="bg-transparent placeholder-white border-b-2 border-white mb-4 outline-none"
                   />
                   {/* <input type="submit" value="" /> */}
-                  <button type="submit" className="bg-white text-black py-2 rounded-lg mb-20">
+                  <button
+                    type="submit"
+                    className="bg-white text-black py-2 rounded-lg mb-20"
+                  >
                     SignUp
                   </button>
                 </form>
