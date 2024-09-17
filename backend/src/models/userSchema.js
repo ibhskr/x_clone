@@ -20,6 +20,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    bio: {
+      type: String,
+      default: "Hey there! Sharing thoughts, ideas, and a bit of myself on X.",
+    },
+    profilePic: {
+      type: String,
+      default: "", // Default to an empty string or a placeholder URL
+    },
+    coverPic: {
+      type: String,
+      default: "", // Default to an empty string or a placeholder URL
+    },
     followers: {
       type: Array,
       default: [],
@@ -29,6 +41,10 @@ const userSchema = new mongoose.Schema(
       default: [],
     },
     bookmarks: {
+      type: Array,
+      default: [],
+    },
+    tweets: {
       type: Array,
       default: [],
     },

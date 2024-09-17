@@ -35,7 +35,7 @@ function LeftSidebar({ className }) {
     }
   };
   return (
-    <div className={` w-1/5  sm:block ${className} hidden `}>
+    <div className={` w-[80%]  sm:block ${className} hidden `}>
       <div>
         <div>
           <img

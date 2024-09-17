@@ -25,7 +25,7 @@ function Register() {
   //--- create new account logic
   const createNewAccount = async (e) => {
     e.preventDefault();
-    // console.table([name, email, username, password]);
+    console.table([name, email, username, password]);
     if (!name || !email || !username || !password) {
       toast.error("All fields are required");
       return;
@@ -37,7 +37,7 @@ function Register() {
         username,
         password,
       });
-      // console.log(res);
+      console.log(res);
       if (res.data.success) {
         toast.success(res.data.message);
         setShowSignup(false);
@@ -49,7 +49,7 @@ function Register() {
       setUsername("");
     } catch (error) {
       toast.success(error.response.data.message);
-      // console.log(error);
+      console.log(error);
     }
   };
 
@@ -66,8 +66,8 @@ function Register() {
         email,
         password,
       });
-      console.log("res.cookie:" + res.cookie);
-      console.log("only res:" + res);
+      // console.log("res.cookie:" + res.cookie);
+      // console.log("only res:" + res);
       if (res.data.success) {
         toast.success(res.data.message);
       }
@@ -241,7 +241,8 @@ function Register() {
                     onChange={(e) => setPassword(e.target.value)}
                     className="bg-transparent placeholder-white border-b-2 border-white mb-4 outline-none"
                   />
-                  <button className="bg-white text-black py-2 rounded-lg mb-20">
+                  {/* <input type="submit" value="" /> */}
+                  <button type="submit" className="bg-white text-black py-2 rounded-lg mb-20">
                     SignUp
                   </button>
                 </form>

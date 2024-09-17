@@ -13,13 +13,13 @@ const useGetProfile = (id) => {
         const res = await axios.get(`${USER_API_END_POINT}/profile/${id}`, {
           withCredentials: true,
         });
+
         dispatch(getMyProfile(res.data.user));
       } catch (error) {
         console.error("Error fetching profile:", error);
-        // Handle errors (e.g., show error message to user)
       }
     };
-
+    fetchMyProfile();
     if (!id) {
       console.error("User ID is undefined or null");
       return;
@@ -27,8 +27,6 @@ const useGetProfile = (id) => {
       fetchMyProfile();
     }
   }, [id, dispatch]); // Ensure dispatch is included in the dependency array
-
-  console.log("id:", id); // Example logging for debugging purposes
 };
 
 export default useGetProfile;

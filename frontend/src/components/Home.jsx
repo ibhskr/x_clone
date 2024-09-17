@@ -22,10 +22,13 @@ function Home() {
   return (
     <div className="flex flex-col items-center">
       <Header />
-      <div className="flex justify-between w-[80%] m-auto">
+      <div className="w-full grid grid-cols-4 justify-items-center">
         <LeftSidebar />
         {/* <Feed/> */}
-        <Outlet />
+        <div className="w-full col-span-2">
+          <Outlet />
+        </div>
+
         <RightSidebar otherUsers={otherUsers} />
       </div>
     </div>

@@ -6,7 +6,7 @@ import LeftSidebar from "./LeftSidebar";
 import { CiUser } from "react-icons/ci";
 function Header() {
   const [menu, setMenu] = useState(false);
-  console.log("menu:" + menu);
+  // console.log("menu:" + menu);
   return (
     <div className="flex justify-between w-full px-10 sm:hidden">
       <div onClick={() => setMenu(!menu)}>

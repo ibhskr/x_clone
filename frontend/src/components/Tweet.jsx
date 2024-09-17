@@ -14,8 +14,10 @@ import { getRefresh } from "../redux/tweetSlice";
 //---
 function Tweet({ tweet }) {
   const { user } = useSelector((store) => store.user);
-  const dispatch = useDispatch();
-  // console.log({tweet});
+  const dispatch = useDispatch();    
+   
+  
+  // like dislike
   const likeOrDislike = async (id) => {
     try {
       const res = await axios.put(
@@ -31,6 +33,8 @@ function Tweet({ tweet }) {
       toast.error(error.response.data.message);
     }
   };
+
+  // delete tweet
   const deleteTweet = async (id) => {
     try {
       axios.defaults.withCredentials = true;
@@ -44,18 +48,17 @@ function Tweet({ tweet }) {
     }
   };
   return (
-    <div>
+    <div className="w-full">
       <div className="flex py-2 px-1 sm:px-10  border">
         <div>
           <Avatar
-            alt="profile pic"
-            src="https://media.wired.com/photos/650399af65d83ff288720473/master/w_1920,c_limit/If-Elon-Musk-Had-Been-a-Happy-Child,-Would-He-Still-Be-Launching-Rockets--Business-Redux-h_16082330.jpg"
-          />
+            alt=""
+            src={tweet.userId?.profilePic} />
         </div>
         <div className="p-2 w-full">
           <div className="flex items-center">
-            <h1 className="font-bold">{tweet.userDetails[0]?.name}</h1>
-            <p className=" text-gray-500 text-sm ml-1">{`@${tweet.userDetails[0]?.username} - 1m`}</p>
+            <h1 className="font-bold">{tweet.userId?.name}</h1>
+            <p className=" text-gray-500 text-sm ml-1">{`@${tweet.userId?.username} - 1m`}</p>
           </div>
           <div>
             <p>{tweet.description}</p>

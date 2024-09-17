@@ -8,6 +8,7 @@ import Home from "./Home";
 import Feed from "./Feed";
 import Profile from "./Profile";
 import Register from "./Register";
+import EditProfile from "./EditProfile";
 function Body() {
   const appRouter = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ function Body() {
           path: "/profile/:id",
           element: <Profile />,
         },
+        {
+          path: "/profile/:id/edit",
+          element: <EditProfile />,
+        }
       ],
     },
 

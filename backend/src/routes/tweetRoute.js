@@ -5,6 +5,8 @@ import {
   deleteTweet,
   getAllTweet,
   getFollowingTweet,
+ 
+  getUserTweets,
   likeOrDislike,
 } from "../controllers/tweetController.js";
 //--
@@ -14,5 +16,6 @@ router.route("/create").post(isAuth, createTweet);
 router.route("/delete/:id").delete(isAuth, deleteTweet);
 router.route("/like/:id").put(isAuth, likeOrDislike);
 router.route("/alltweets/:id").get(isAuth, getAllTweet);
+router.route("/usertweets/:id").get(isAuth, getUserTweets);
 router.route("/followingtweet/:id").get(isAuth, getFollowingTweet);
 export default router;

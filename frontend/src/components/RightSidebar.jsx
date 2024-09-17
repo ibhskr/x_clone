@@ -36,7 +36,7 @@ function RightSidebar({ otherUsers }) {
               <div className="flex items-center cursor-pointer">
                 <Avatar
                   alt="profile pic"
-                  src={user?.avatarUrl || "https://via.placeholder.com/150"} // Use a placeholder if no URL
+                  src={user?.profilePic || "https://via.placeholder.com/150"} // Use a placeholder if no URL
                 />
                 <div className="ml-2">
                   <h1 className="font-bold text-sm">{user?.name}</h1>

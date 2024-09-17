@@ -1,5 +1,7 @@
 import { Tweet } from "../models/tweetSchema.js";
 import { User } from "../models/userSchema.js";
+
+//-- create tweet
 export const createTweet = async (req, res) => {
   try {
     const { description, id } = req.body;
@@ -10,11 +12,14 @@ export const createTweet = async (req, res) => {
       });
     }
     const user = await User.findById(id).select("-password");
-    await Tweet.create({
+    const tweet = await Tweet.create({
       description,
       userId: id,
-      userDetails: user,
+      // userDetails: user,
     });
+    // Add tweet ID to user's tweet list
+    user.tweets.push(tweet._id);
+    await user.save();
 
     return res.status(201).json({
       message: "Tweet post Successfully",
@@ -22,6 +27,8 @@ export const createTweet = async (req, res) => {
     });
   } catch (error) {}
 };
+
+//-- delete tweet
 
 export const deleteTweet = async (req, res) => {
   try {
@@ -35,6 +42,8 @@ export const deleteTweet = async (req, res) => {
     console.log(error);
   }
 };
+
+//-- like dislike
 export const likeOrDislike = async (req, res) => {
   try {
     const loggedinUserId = req.body.id;
@@ -81,10 +90,10 @@ export const getAllTweet = async (req, res) => {
   try {
     const id = req.params.id;
     const loggedinUser = await User.findById(id);
-    const loggedinUserTweet = await Tweet.find({ userId: id });
+    const loggedinUserTweet = await Tweet.find({ userId: id }).populate("userId");
     const followingUserTweet = await Promise.all(
-      loggedinUser.following.map((othertUserId) => {
-        return Tweet.find({ userId: othertUserId });
+      loggedinUser?.following?.map((othertUserId) => {
+        return Tweet.find({ userId: othertUserId }).populate("userId");
       })
     );
     return res.status(200).json({
@@ -104,12 +113,25 @@ export const getFollowingTweet = async (req, res) => {
     // const loggedinUserTweet = await Tweet.find({ userId: id });
     const followingUserTweet = await Promise.all(
       loggedinUser.following.map((othertUserId) => {
-        return Tweet.find({ userId: othertUserId });
+        return Tweet.find({ userId: othertUserId }).populate("userId");
       })
     );
     return res.status(200).json({
       tweet: [].concat(...followingUserTweet),
     });
+  } catch (error) {
+    console.error(error);
+  }
+};
+// -- get one user tweet
+export const getUserTweets = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findById(id);
+    const UserTweets = await Tweet.find({ userId: id }).populate("userId");
+    // const tweet = loggedinUserTweet.concat(user);
+
+    return res.status(200).json(UserTweets);
   } catch (error) {
     console.error(error);
   }

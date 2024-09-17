@@ -6,6 +6,8 @@ import tweetRoute from "./src/routes/tweetRoute.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+
+
 const app = express();
 const corsOptions = {
   origin: "http://localhost:5173", // Replace with your front-end URL
@@ -32,6 +34,8 @@ app.use(cookieParser());
 
 // API Routes
 app.use("/api/v1/user", userRoute);
+// app.use("/api/v1/image", imageRoute);
+
 app.use("/api/v1/tweet", tweetRoute);
 // app.get("/home", (req, res) => {
 //   // Example of setting a cookie
@@ -45,6 +49,11 @@ app.use("/api/v1/tweet", tweetRoute);
 //     message: "coming from backend...",
 //   });
 // });
+
+
+
+
+
 
 // Connect to the database
 connectDB();
