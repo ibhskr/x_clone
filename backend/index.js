@@ -8,15 +8,14 @@ import cors from "cors";
 import "dotenv/config";
 
 const app = express();
+// const corsOptions = {
+//   origin: "https://x-clone-7ppu.onrender.com",
+//   // origin: "http://localhost:5173", // Replace with your front-end URL
+//   credentials: true, // This is needed for sending cookies
+// };
 
-// Configure CORS options
-const corsOptions = {
-  origin: "https://x-clone-7ppu.onrender.com",
-  credentials: true, // Allow credentials like cookies
-};
-
-// Apply CORS middleware
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 // Load environment variables
 // if (process.env.NODE_ENV !== 'production') {
