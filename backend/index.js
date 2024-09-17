@@ -5,6 +5,7 @@ import userRoute from "./src/routes/userRoute.js";
 import tweetRoute from "./src/routes/tweetRoute.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import 'dotenv/config'
 
 
 
@@ -17,9 +18,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Load environment variables
-if (process.env.NODE_ENV !== 'production') {
-  process.loadEnvFile();
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   process.loadEnvFile();
+// }
 
 const PORT = process.env.PORT || 5000; // Default to 5000 if PORT is not defined
 

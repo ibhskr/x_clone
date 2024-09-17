@@ -3,9 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 import path from "path";
+import "dotenv/config";
 import { User } from "../models/userSchema.js";
 
-process.loadEnvFile();
+// process.loadEnvFile();
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
