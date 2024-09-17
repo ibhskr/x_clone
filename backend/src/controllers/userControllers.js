@@ -2,8 +2,8 @@ import { User } from "../models/userSchema.js";
 import { Tweet } from "../models/tweetSchema.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-process.loadEnvFile();
-
+// process.loadEnvFile();
+import "dotenv/config";
 // import { JsonWebTokenError } from "jsonwebtoken";
 //-- register
 export const Register = async (req, res) => {
